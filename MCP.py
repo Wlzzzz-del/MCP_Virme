@@ -1,5 +1,4 @@
 from openai import OpenAI
-from MCP import NLU_MCP_Full,NLU_MCP_Batches
 from openai_config import API_KEY,BASE_URL
 import time
 import json
@@ -10,7 +9,7 @@ class Base_MCP:
         # System messsage构造
         self.messages.append(self.construct_system_message(self.construct_template_prompt()))
         self.read_markdown_file(path)
-        self.agent = OpenAI(API_KEY,BASE_URL)
+        self.agent = OpenAI(api_key=API_KEY,base_url=BASE_URL)
         self.model_type = "gpt-3.5-turbo"  # 可以根据需要更改模型类型
         self.out_put_path = "./output.gml"
 
@@ -59,7 +58,7 @@ class Base_MCP:
             else:
                 break
     
-    def convert_to_gml(self, json_content, output_file):
+    def _convert_to_gml(self, json_content, output_file):
         """
         将JSON格式的图数据转换为GML格式并保存到文件
         :param json_content: JSON格式的图数据
@@ -132,7 +131,7 @@ class NLU_MCP_Full(Base_MCP):
             print(completion.choices[0].message.content)
             json_type = str(completion.choices[0].message.content)
             time.sleep(10)
-        self.convert_to_gml(json_type, self.out_put_path)  # 将转换后的JSON数据保存为GML文件
+        self._convert_to_gml(json_type, self.out_put_path)  # 将转换后的JSON数据保存为GML文件
 
     def read_markdown_file(self, file_path):
         """
@@ -159,4 +158,5 @@ if __name__ == "__main__":
     # 替换为您的Markdown文件路径
     markdown_file_path = "./nlu_half.md"
     M = NLU_MCP_Full(markdown_file_path)
-    M.show_messages()
+    # M.show_messages()
+    M.convert()
