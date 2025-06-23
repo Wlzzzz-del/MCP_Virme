@@ -1,0 +1,16 @@
+- create a flow between [Host ABC1_2](source) and [s1](target) with [at least](operator:GTE) [1Gbps](qos)
+- add a route between [switch s1_b2](source) & [host1](target)
+- add a route between [219.41.0.9](source) & [s1](target)
+- create the following flow: [74.0.0.6](source) [s1](target) [0.5 MBps](qos)
+- create a flow from [s1](source) to [s_9](target) as target
+- create a shortest path from [h1](source) to [74.0.0.6](target) and let the packets flow
+- allow communication between [s37](source) and [Host 19](target)
+- route traffic from [Host 19](source) to [AB:cd:12:e3:f4:5e](target) with [minimum](operator:GTE) bandwidth of [2.1 mbps](qos)
+- configure service from [host 37](source) to [74.0.0.6](target) at [0.5 MBps](qos)
+- create the following flow: [core switch](source) [h49](target) [0.5 MBps](qos)
+- create a flow with [switch s1_b2](source) as source and [A01b2c3d4e5f](target) as target
+- create the following flow: [219.41.0.9](source) [Host ABC1_2](target) [0.5 MBps](qos)
+- create a shortest path from [74.0.0.6](source) to [A01b2c3d4e5f](target) and let the packets flow
+- create a flow with [h1](source) as source and [host 37](target) as target
+- allocate flows from [Host ABC1_2](source) to [h49](target)
+- install rules for [host1](source) & [Host ABC1_2](target) communication
